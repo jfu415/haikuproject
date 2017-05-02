@@ -1,0 +1,25 @@
+Display directions/introduction/purpose of this game
+
+Ask user if they prefer to create a haiku using some of their own words
+    if YES, display directions and guidelines to create a haiku 
+        ask user to type 'continue' to prompt to next screen
+        ask user to enter certain nounds/pronounds/verbs and insert these words to madlib haiku.
+        give user the option to exit if they no longer want to write their own and prompt user to select questions [as if they selected NO in the beginning]
+
+    if NO, display first question including choices for user to select
+
+Ask user first question and to make selection for first line of Haiku
+    if user selects A,B, or C, add corresponding line to line 1 of Haiku
+    if user selects D [NONE OF THESE], prompt secondary options
+
+
+[repeat for questions 2 and 3 for lines 2 and 3 respectively]
+
+Display menu options:
+    View Haiku
+    Start Over 
+    Exit
+
+    if user chooses 'View Haiku', display haiku in 3 separate lines
+    if user chooses 'Start Over', go to first question
+    if user chooses 'Exit', quit program. 
