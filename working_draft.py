@@ -1,6 +1,8 @@
 
 #global variables
 
+from GetSylly import CountSyllables
+
 user_created_haiku = []
 user_generated_haiku = []
 
@@ -25,15 +27,15 @@ def main_menu():
     """
 
     print user_options
-    choice = int(raw_input('Choose from the menu options: '))
-    execute_main_menu(choice)
+
+    execute_main_menu()
 
 
-def execute_main_menu(choice):
+def execute_main_menu():
     this_loop = True
     while this_loop:
-        choice = (raw_input(choice))
-        if choice == '1':
+        choice = raw_input('Choose from the menu options: ')
+        if choice == "1":
             # introduction
             introduction()
 
@@ -55,41 +57,62 @@ def execute_main_menu(choice):
             # Exits program
             break
 
-        #else:
-            #this_loop = False
-            #print "Please select an option from 1-5."
+        else:
+            this_loop = False
+            print "Please select an option from 1-5."
+            execute_main_menu()
 
 ####### MENU PROMPTS ########
 
 def introduction():
     # Brief introduction of what a Haiku is and how to create one
-
+    print "\n"
     print "A haiku is a poem with 3 lines that contains 5, 7 and 5 syllables respectively"
-    user_input_go_back = raw_input("Press 0 to return to main menu >>>")
+    print "\n"
+    user_input_go_back = raw_input("""\nPress 0 to return to main menu \nPress 1 to see an example of a haiku >>>""")
 
-    if user_input_go_back == "0":
-        main_menu()
+    gtfo = True
+    while True:
+        if user_input_go_back == "0":
+            main_menu()
+        elif user_input_go_back == "1":
+            print " INSERT HAIKU EXAMPLES HERE"
+            break
+        else:
+            print ""
 
-    return
 
 def display_all_haikus():
     # displays all of the haikus that the user has generated or created
-    print "Haikus that you wrote:"
-    #insert line break here
-    for item in user_created_haiku:
-        print item
-    print "Haikus that you generated:"
-    #insert line break here
-    for item in user_generated_haiku:
-        print item
-    #insert line break here
+
+
+
+    while True:
+
+        if len(user_created_haiku) == 0:
+            print "You haven't written any haikus yet!"
+            break
+        else:
+            break
+            print "Haikus that you wrote:"
+            print "\n"
+
+            for item in user_created_haiku:
+                print item
+                print "\n"
+                print "Haikus that you generated:"
+                print "\n"
+            for item in user_generated_haiku:
+                print item
+                print "\n"
+
+
     user_input_go_back = raw_input("Press 0 to return to main menu >>>")
 
     if user_input_go_back == "0":
         main_menu()
     else:
-        print "please press 0 to go back to main menu"
-
+        user_input_go_back = raw_input("Press 0 to return to main menu >>>")
     return
 
 
@@ -100,19 +123,19 @@ def question1_repl(question_1_input):
     while loop:
         if question_1_input == "A":
                 # function to add a line of haiku to Line 1
-                user_generated_haiku.append("line(conservative) of haiku here")
+                user_generated_haiku.append("No, I haven't heard")
                 question_2()
         elif question_1_input == "B":
                 # function to add a line of haiku to Line 1
-                user_generated_haiku.append("line(liberal) of haiku here")
+                user_generated_haiku.append("If not now, then when?")
                 question_2()
         elif question_1_input == "C":
                 # function to add a line of haiku to Line 1
-                user_generated_haiku.append("line(liberal_conserv) of haiku here")
+                user_generated_haiku.append("White picket fences")
                 question_2()
         elif question_1_input == "D":
                 # function to add a line of haiku to Line 1
-                user_generated_haiku.append("line(apathetic) of haiku here")
+                user_generated_haiku.append("Do not speak for me")
                 question_2()
         else:
             loop = False
@@ -120,11 +143,11 @@ def question1_repl(question_1_input):
     return
 
 def question_1():
-    print "\nQuestion 1 here\n"
-    print "A) _____"
-    print "B) ______"
-    print "C) ______"
-    print "D) _______\n"
+    print "\nIn your honest opinion....\n"
+    print "A) I have no opinions on this issue. "
+    print "B) The common good of all people depends on a unifying efford to defend the civil rights of every human being."
+    print "C) I believe we should all worry about our own lives and successes. We get what we deserve."
+    print "D) None of these options describe how I feel\n"
     question_1_input = str(raw_input("Which selection best fits you? >>").upper())
     question1_repl(question_1_input)
 
@@ -134,24 +157,24 @@ def question_1():
 
 
 
-def question2_repl():
+def question2_repl(input):
     # 7 SYLLABLE LINE
     while True:
         if question_choice == "A":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("line of haiku")
             question_3()
         elif question_choice == "B":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("line of haiku")
             question_3()
         elif question_choice == "C":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("line of haiku")
             question_3()
         elif question_choice == "D":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("line of haiku")
             question_3()
     return
 
@@ -202,37 +225,56 @@ def question_3():
 
 
 def write_line_2():
-    user_input_go_back = raw_input("Press 0 to return to main menu >>>")
+    user_input_go_back = raw_input("""Press 0 to return to main menu
+        \nPress 1 to resume writing your haiku  >>""")
 
     if user_input_go_back == "0":
             main_menu()
-    else:
-        print "please press 0 to go back to main menu"
+    elif user_input_go_back == "1":
+            line1 = str(raw_input("Begin writing here -------->> "))
 
+    #Adds line1 to user_created_haiku list.
+
+def add_line_to_list(line):
+    if line not in user_created_haiku:
+        user_created_haiku.append(line)
 
 
 def create_own_haiku_instructions():
 
-    print "~~~Create Your Own Haiku~~~"
-    #instructions
+    print "~*~*~Create Your Own Haiku~*~*~"
+    print "\n"
+    print "A haiku contains 3 lines."
+    print "The first and third lines should contain 5 syllables"
+    print "while the second line contains 7 syllables."
+    print "\n"
+
+
+#    Instructions here
 
 
 
-    #line1=user_input  + syllable_count()  <---- import function from another file?
-
-
-    #syllable_count(line1)
-
-    #return syllable_count
-    #return line1
-    #for syllable in line1:
-    #    if syllable_count(line1) == 5:
-    #        print "Great! You entered 5 syllables!"
 
     line1 = str(raw_input("Begin writing here -------->> "))
-    if line1 not in user_created_haiku:
-        user_created_haiku.append(line1)
 
+    #pass line1 through CountSyllables function imported from Get-Sylly module and print syllables + line.
+    print CountSyllables(line1)
+    print "\n"
+
+    line1_syl = CountSyllables(line1)
+
+    while True:
+        line1_syl = CountSyllables(line1)
+
+        if line1_syl != 5:
+            print "The line you entered has {0} syllables, when you need 5 for your first line. Try again!".format(line1_syl)
+            print "\n"
+            line1 = str(raw_input("Begin writing here -------->> "))
+
+        elif line1_syl == 5:
+            print "Great! 5 syllables. Adding this to your haiku now..... .... ..... ... .. one moment!"
+            add_line_to_list(line1)
+            break
 
     write_line_2()
 #    else:
