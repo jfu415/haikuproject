@@ -40,7 +40,8 @@ def execute_main_menu():
             introduction()
 
         elif choice == "2":
-            print "Okay! Let's begin!"
+            print "~~~~Okay! Let's begin!~~~~"
+            print "Answer the following questions based on how you feel about each political context."
             question_1()
             # call function here to prompt series of questions to generate
 
@@ -55,36 +56,53 @@ def execute_main_menu():
 
         elif choice == "5":
             # Exits program
-            break
+            exit()
 
         else:
-            this_loop = False
-            print "Please select an option from 1-5."
-            execute_main_menu()
+            try:
+    			execute_main_menu()
+    			print "\n"
+
+            except ValueError:
+                this_loop = False
+                print "Invalid input. Please select an option from 1-5"
+                continue
+
+
 
 ####### MENU PROMPTS ########
 
 def introduction():
     # Brief introduction of what a Haiku is and how to create one
+    print "\n~~~~Introduction~~~~"
     print "\n"
-    print "A haiku is a poem with 3 lines that contains 5, 7 and 5 syllables respectively"
+    print "A haiku is a traditional form of Japanese poetry"
+    print "with 3 lines that do not have to rhyme."
+    print "The first and last lines contain 5 syllables,"
+    print "while the second line contains 7 syllables."
     print "\n"
-    user_input_go_back = raw_input("""\nPress 0 to return to main menu \nPress 1 to see an example of a haiku >>>""")
+    user_input_go_back = raw_input("""\nPress 0 to return to main menu \nPress 1 to see examples of a haiku >>>""")
 
 
     while True:
         if user_input_go_back == "0":
             main_menu()
         elif user_input_go_back == "1":
-            print " INSERT HAIKU EXAMPLES HERE"
-            print " EXAMPLE"
-            print "EXAMPLE"
+            print "\nHaikus are easy"
+            print "But sometimes they don't make sense"
+            print "Refrigerator\n"
+            print "\n "
+            print "Advice for those"
+            print "in a difficult position:"
+            print "First, be flexible.\n"
+            print "\n"
             break
         else:
-
             print "Please select either 0 or 1."
             break
 
+
+    return
 def display_all_haikus():
 
     # displays all of the haikus that the user has generated or created
@@ -97,13 +115,13 @@ def display_all_haikus():
             print "You haven't written any haikus yet!"
             break
 
-        if Chaiku_length < 3:
+        elif Chaiku_length < 3:
             for item in user_created_haiku:
                 print item
             print "\nYou've only written {} lines of haiku so far. Keep writing!".format(Chaiku_length)
             break
 
-        if Ghaiku_length < 3:
+        elif Ghaiku_length < 3:
             print "You've only generated {} lines of haiku so far. Answer a few more questions to get your haiku!".format(Ghaiku_length)
             break
 
@@ -131,7 +149,7 @@ def display_all_haikus():
 
 def question_1():
     print "\nIn your honest opinion....\n"
-    print "A) I have no opinions on this issue. "
+    print "A) I have no opinions about this issue. "
     print "B) The common good of all people depends on a unifying effort to defend the civil rights of every human being."
     print "C) I believe we should all worry about our own lives and successes. We get what we deserve."
     print "D) None of these options describe how I feel\n"
@@ -142,12 +160,24 @@ def question_1():
 
 def question_2():
     print "\nQuestion 2 here\n"
-    print "A) _____"
+    print "A) ______"
     print "B) ______"
-    print "C) _______"
+    print "C) ______ "
     print "D) _______\n"
     question_2_input = str(raw_input("Which selection best fits you? >>").upper())
     question2_repl(question_2_input)
+
+    return
+
+def question_3():
+
+    print "\nQuestion 3 here\n"
+    print "A) _____"
+    print "B) ______"
+    print "C) ______"
+    print "D) _______\n"
+    question_3_input = str(raw_input("Which selection best fits you? >>").upper())
+    question3_repl(question_3_input)
 
     return
 
@@ -186,56 +216,63 @@ def question2_repl(input):
     while True:
         if input == "A":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku")
+            user_generated_haiku.append("insert line here")
             question_3()
         elif input == "B":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku")
+            user_generated_haiku.append("What about the war at home?")
             question_3()
         elif input == "C":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku")
+            user_generated_haiku.append("Doesn't matter anyway")
             question_3()
         elif input == "D":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku")
+            user_generated_haiku.append("Fighting hard in the trenches")
             question_3()
     return
 
+def finished_generating():
+
+    user_input_view_gen = raw_input("Press 1 to see your generated Haiku >>>")
+
+    while True:
+
+        if user_input_view_gen == "1":
+            for item in user_generated_haiku:
+                print item
+        break
+
+    return_to_mm = raw_input("Press 0 to return to main menu to create more haikus!! >>>")
+
+    while True:
+
+        if return_to_mm == "0":
+            main_menu()
 
 
 def question3_repl(input):
     #5 SYLLABLE LINE
+
     while True:
         if input == "A":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
-
+            finished_generating()
         elif input == "B":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
-
+            finished_generating()
         elif input == "C":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
-
+            finished_generating()
         elif input == "D":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
-
-    return
-
-def question_3():
-
-    print "\nQuestion 3 here\n"
-    print "A) _____"
-    print "B) ______"
-    print "C) ______"
-    print "D) _______\n"
-    question_3_input = str(raw_input("Which selection best fits you? >>").upper())
-    question3_repl(question_3_input)
-
-    return
+            finished_generating()
+        else:
+            print "Please select an option above"
 
 
 
