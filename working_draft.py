@@ -71,32 +71,46 @@ def introduction():
     print "\n"
     user_input_go_back = raw_input("""\nPress 0 to return to main menu \nPress 1 to see an example of a haiku >>>""")
 
-    gtfo = True
+
     while True:
         if user_input_go_back == "0":
             main_menu()
         elif user_input_go_back == "1":
             print " INSERT HAIKU EXAMPLES HERE"
+            print " EXAMPLE"
+            print "EXAMPLE"
             break
         else:
-            print ""
 
+            print "Please select either 0 or 1."
+            break
 
 def display_all_haikus():
+
     # displays all of the haikus that the user has generated or created
 
-
-
     while True:
+        Chaiku_length = len(user_created_haiku)
+        Ghaiku_length = len(user_generated_haiku)
 
-        if len(user_created_haiku) == 0:
+        if (Chaiku_length == 0 and Ghaiku_length == 0):
             print "You haven't written any haikus yet!"
             break
+
+        if Chaiku_length < 3:
+            for item in user_created_haiku:
+                print item
+            print "\nYou've only written {} lines of haiku so far. Keep writing!".format(Chaiku_length)
+            break
+
+        if Ghaiku_length < 3:
+            print "You've only generated {} lines of haiku so far. Answer a few more questions to get your haiku!".format(Ghaiku_length)
+            break
+
         else:
             break
             print "Haikus that you wrote:"
             print "\n"
-
             for item in user_created_haiku:
                 print item
                 print "\n"
@@ -106,16 +120,36 @@ def display_all_haikus():
                 print item
                 print "\n"
 
-
-    user_input_go_back = raw_input("Press 0 to return to main menu >>>")
+    user_input_go_back = raw_input("Press 0 to return to main menu")
 
     if user_input_go_back == "0":
         main_menu()
+
     else:
         user_input_go_back = raw_input("Press 0 to return to main menu >>>")
+        return
+
+def question_1():
+    print "\nIn your honest opinion....\n"
+    print "A) I have no opinions on this issue. "
+    print "B) The common good of all people depends on a unifying effort to defend the civil rights of every human being."
+    print "C) I believe we should all worry about our own lives and successes. We get what we deserve."
+    print "D) None of these options describe how I feel\n"
+    question_1_input = str(raw_input("Which selection best fits you? >>").upper())
+    question1_repl(question_1_input)
+
     return
 
+def question_2():
+    print "\nQuestion 2 here\n"
+    print "A) _____"
+    print "B) ______"
+    print "C) _______"
+    print "D) _______\n"
+    question_2_input = str(raw_input("Which selection best fits you? >>").upper())
+    question2_repl(question_2_input)
 
+    return
 
 def question1_repl(question_1_input):
     # 5 SYLLABLE LINE
@@ -142,16 +176,6 @@ def question1_repl(question_1_input):
             print "Please select one of the above"
     return
 
-def question_1():
-    print "\nIn your honest opinion....\n"
-    print "A) I have no opinions on this issue. "
-    print "B) The common good of all people depends on a unifying efford to defend the civil rights of every human being."
-    print "C) I believe we should all worry about our own lives and successes. We get what we deserve."
-    print "D) None of these options describe how I feel\n"
-    question_1_input = str(raw_input("Which selection best fits you? >>").upper())
-    question1_repl(question_1_input)
-
-    return
 
 
 
@@ -160,51 +184,42 @@ def question_1():
 def question2_repl(input):
     # 7 SYLLABLE LINE
     while True:
-        if question_choice == "A":
+        if input == "A":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku")
             question_3()
-        elif question_choice == "B":
+        elif input == "B":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku")
             question_3()
-        elif question_choice == "C":
+        elif input == "C":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku")
             question_3()
-        elif question_choice == "D":
+        elif input == "D":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku")
             question_3()
     return
 
-def question_2():
-    print "\nQuestion 2 here\n"
-    print "A) _____"
-    print "B) ______"
-    print "C) _______"
-    print "D) _______\n"
-    question_2_input = str(raw_input("Which selection best fits you? >>").upper())
-    question2_repl(question_2_input)
 
-    return
 
-def question3_repl():
+def question3_repl(input):
     #5 SYLLABLE LINE
     while True:
-        if question_choice == "A":
+        if input == "A":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
 
-        elif question_choice == "B":
+        elif input == "B":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
 
-        elif question_choice == "C":
+        elif input == "C":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
 
-        elif question_choice == "D":
+        elif input == "D":
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
 
@@ -225,13 +240,15 @@ def question_3():
 
 
 def write_line_2():
-    user_input_go_back = raw_input("""Press 0 to return to main menu
-        \nPress 1 to resume writing your haiku  >>""")
+
+    user_input_go_back = raw_input("Press 0 to return to main menu")
+
+#function to continue writing haiku
 
     if user_input_go_back == "0":
-            main_menu()
+        main_menu()
     elif user_input_go_back == "1":
-            line1 = str(raw_input("Begin writing here -------->> "))
+        line1 = str(raw_input("Begin writing here -------->> "))
 
     #Adds line1 to user_created_haiku list.
 
@@ -249,16 +266,11 @@ def create_own_haiku_instructions():
     print "while the second line contains 7 syllables."
     print "\n"
 
-
-#    Instructions here
-
-
-
+# Write haiku Instructions here
 
     line1 = str(raw_input("Begin writing here -------->> "))
 
     #pass line1 through CountSyllables function imported from Get-Sylly module and print syllables + line.
-    print CountSyllables(line1)
     print "\n"
 
     line1_syl = CountSyllables(line1)
@@ -272,7 +284,7 @@ def create_own_haiku_instructions():
             line1 = str(raw_input("Begin writing here -------->> "))
 
         elif line1_syl == 5:
-            print "Great! 5 syllables. Adding this to your haiku now..... .... ..... ... .. one moment!"
+            print "Great! 5 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
             add_line_to_list(line1)
             break
 
@@ -285,6 +297,14 @@ def create_own_haiku_instructions():
 
     #syllable_count(line1)
 
+
+def progress(haiku):
+
+    if user_created_haiku:
+        print user_created_haiku
+
+    elif user_generated_haiku:
+        print user_generated_haiku
 
 
 
@@ -300,8 +320,8 @@ main_menu()
 ######                   **** finish writing haiku lines
 ######                   **** questions for haiku generator
 ######                   **** Would it be simpler to create a dictionary to store functions & user input options (ex. 0 - main menu, 4 - display all haikus)  ???
-######                  ***** figure out how to use syllable_count()/import from https://github.com/akkana/scripts/blob/master/countsyl
+######
 ######                     ** stylistic nice-to-haves
-######                    *** combine generated haiku lines + user written lines
+######                     ** combine generated haiku lines + user written lines
 ######                      * if there's time, think of more questions to increase possibilities for user to generate a unique haiku.
 ######
