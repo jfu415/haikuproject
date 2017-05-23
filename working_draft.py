@@ -163,7 +163,7 @@ def question_2():
     print "A) ______"
     print "B) ______"
     print "C) ______ "
-    print "D) _______\n"
+    print "D) None of these options describe how I feel \n"
     question_2_input = str(raw_input("Which selection best fits you? >>").upper())
     question2_repl(question_2_input)
 
@@ -175,29 +175,29 @@ def question_3():
     print "A) _____"
     print "B) ______"
     print "C) ______"
-    print "D) _______\n"
+    print "D) None of these options describe how I feel\n"
     question_3_input = str(raw_input("Which selection best fits you? >>").upper())
     question3_repl(question_3_input)
 
     return
 
-def question1_repl(question_1_input):
+def question1_repl(input):
     # 5 SYLLABLE LINE
     loop = True
     while loop:
-        if question_1_input == "A":
+        if input == "A":
                 # function to add a line of haiku to Line 1
                 user_generated_haiku.append("No, I haven't heard")
                 question_2()
-        elif question_1_input == "B":
+        elif input == "B":
                 # function to add a line of haiku to Line 1
                 user_generated_haiku.append("If not now, then when?")
                 question_2()
-        elif question_1_input == "C":
+        elif input == "C":
                 # function to add a line of haiku to Line 1
                 user_generated_haiku.append("White picket fences")
                 question_2()
-        elif question_1_input == "D":
+        elif input == "D":
                 # function to add a line of haiku to Line 1
                 user_generated_haiku.append("Do not speak for me")
                 question_2()
@@ -274,20 +274,55 @@ def question3_repl(input):
         else:
             print "Please select an option above"
 
+def write_line_3():
+    #asks user if they would like to continue writing their haiku
 
+    user_input_cont = raw_input("Ready to keep writing?! Press 1!!>>")
+    if user_input_cont == "1":
+        line3 = str(raw_input("Begin writing here -------->> "))
+
+    #passes user created line3 into CountSyllables function
+
+    line3_syl = CountSyllables(line3)
+
+    #while loop to check if user has met syllable requirements
+    while True:
+
+        if line3_syl != 5:
+            print "The line you entered has {0} syllables, when you need 5 for your third line. Try again!".format(line3_syl)
+            print "\n"
+            line3 = str(raw_input("Begin writing here -------->> "))
+
+    #if yes, add to list containing haiku lines
+
+        elif line3_syl == 5:
+            print "Great! 5 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
+            add_line_to_list(line3)
+            break
 
 def write_line_2():
 
-    user_input_go_back = raw_input("Press 0 to return to main menu")
+    user_input_cont = raw_input("\nReady to keep writing?! Press 1!!>>")
+    if user_input_cont == "1":
+        line2 = str(raw_input("Begin writing here -------->> "))
 
+        line2_syl = CountSyllables(line2)
 #function to continue writing haiku
+    while True:
+        #line2_syl = CountSyllables(line2)
+        if line2_syl != 7:
+            print "The line you entered has {0} syllables, when you need 7 for your second line. Try again!".format(line2_syl)
+            print "\n"
+            line2 = str(raw_input("Begin writing here -------->> "))
 
-    if user_input_go_back == "0":
-        main_menu()
-    elif user_input_go_back == "1":
-        line1 = str(raw_input("Begin writing here -------->> "))
+        elif line2_syl == 7:
+            print "Great! 7 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
+            add_line_to_list(line2)
+            break
 
-    #Adds line1 to user_created_haiku list.
+    write_line_3()
+
+
 
 def add_line_to_list(line):
     if line not in user_created_haiku:
@@ -296,7 +331,7 @@ def add_line_to_list(line):
 
 def create_own_haiku_instructions():
 
-    print "~*~*~Create Your Own Haiku~*~*~"
+    print "\n~*~*~Create Your Own Haiku~*~*~"
     print "\n"
     print "A haiku contains 3 lines."
     print "The first and third lines should contain 5 syllables"
@@ -362,3 +397,4 @@ main_menu()
 ######                     ** combine generated haiku lines + user written lines
 ######                      * if there's time, think of more questions to increase possibilities for user to generate a unique haiku.
 ######
+######                      create dict to store diff classifications of haiku lines (cons,lib,idaf,idk) and use d.popitem() to plug in randomly?
