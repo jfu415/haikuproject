@@ -111,22 +111,17 @@ def display_all_haikus():
         Chaiku_length = len(user_created_haiku)
         Ghaiku_length = len(user_generated_haiku)
 
-        if (Chaiku_length == 0 and Ghaiku_length == 0):
-            print "You haven't written any haikus yet!"
-            break
-
-        elif Chaiku_length < 3:
+        if (Chaiku_length < 3 and Ghaiku_length == 0):
             for item in user_created_haiku:
                 print item
-            print "\nYou've only written {} lines of haiku so far. Keep writing!".format(Chaiku_length)
+            print "\nYou've only written {} lines of haiku so far and you haven't generated any haikus either!!".format(Chaiku_length)
             break
 
-        elif Ghaiku_length < 3:
-            print "You've only generated {} lines of haiku so far. Answer a few more questions to get your haiku!".format(Ghaiku_length)
+        elif (Ghaiku_length < 3 and Chaiku_length == 0):
+            print "You've only generated {} lines of haiku so far, and you haven't created any haikus either! What are you doing!!!??".format(Ghaiku_length)
             break
 
-        else:
-            break
+        elif (Chaiku_length == 3 and Ghaiku_length == 3):
             print "Haikus that you wrote:"
             print "\n"
             for item in user_created_haiku:
@@ -137,6 +132,10 @@ def display_all_haikus():
             for item in user_generated_haiku:
                 print item
                 print "\n"
+            break
+
+
+
 
     user_input_go_back = raw_input("Press 0 to return to main menu")
 
@@ -271,14 +270,22 @@ def question3_repl(input):
             # function to add a line of haiku to Line 1
             user_generated_haiku.append("line of haiku here")
             finished_generating()
-        else:
-            print "Please select an option above"
+
+
 
 
 def view_created_haiku():
 
     for item in user_created_haiku:
         print item
+
+    print "\n~~~Are you happy with your haiku?~~~"
+    user_input_whatnow = str(raw_input("\nType YES or NO >>")).lower()
+
+    if user_input_whatnow == "yes":
+        print "Great! "
+    else:
+        print "Enter a prompt"
 
 def write_line_3():
     #asks user if they would like to continue writing their haiku
