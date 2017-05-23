@@ -274,6 +274,12 @@ def question3_repl(input):
         else:
             print "Please select an option above"
 
+
+def view_created_haiku():
+
+    for item in user_created_haiku:
+        print item
+
 def write_line_3():
     #asks user if they would like to continue writing their haiku
 
@@ -290,8 +296,7 @@ def write_line_3():
 
         if line3_syl != 5:
             print "The line you entered has {0} syllables, when you need 5 for your third line. Try again!".format(line3_syl)
-            print "\n"
-            line3 = str(raw_input("Begin writing here -------->> "))
+            write_line_3()
 
     #if yes, add to list containing haiku lines
 
@@ -300,20 +305,28 @@ def write_line_3():
             add_line_to_list(line3)
             break
 
+    print "Would you like to see your haiku?"
+    wanna_see = raw_input("Press 1 to view your haiku. Press 2 to return to main menu >>>")
+    if wanna_see == "1":
+        view_created_haiku()
+    elif wanna_see == "2":
+            main_menu()
+
 def write_line_2():
 
-    user_input_cont = raw_input("\nReady to keep writing?! Press 1!!>>")
-    if user_input_cont == "1":
-        line2 = str(raw_input("Begin writing here -------->> "))
 
-        line2_syl = CountSyllables(line2)
-#function to continue writing haiku
+    line2 = str(raw_input("Begin writing your second line here -------->> "))
+
+    line2_syl = CountSyllables(line2)
+
+#function to check syllables/continue writing haiku
+
     while True:
         #line2_syl = CountSyllables(line2)
         if line2_syl != 7:
             print "The line you entered has {0} syllables, when you need 7 for your second line. Try again!".format(line2_syl)
-            print "\n"
-            line2 = str(raw_input("Begin writing here -------->> "))
+            write_line_2()
+
 
         elif line2_syl == 7:
             print "Great! 7 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
@@ -321,6 +334,7 @@ def write_line_2():
             break
 
     write_line_3()
+
 
 
 
