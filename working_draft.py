@@ -24,6 +24,7 @@ def main_menu():
     3 -- Create my own haiku
     4 -- See all haikus
     5 -- Exit
+    \n
     """
 
     print user_options
@@ -34,14 +35,14 @@ def main_menu():
 def execute_main_menu():
     this_loop = True
     while this_loop:
-        choice = raw_input('Choose from the menu options: ')
+        choice = raw_input('\nChoose from the menu options: ')
         if choice == "1":
             # introduction
             introduction()
 
         elif choice == "2":
-            print "~~~~Okay! Let's begin!~~~~"
-            print "Answer the following questions based on how you feel about each political context."
+            print "\n~~~~Okay! Let's begin!~~~~"
+            print "\nAnswer the following questions based on how you feel about each political context."
             question_1()
             # call function here to prompt series of questions to generate
 
@@ -106,35 +107,33 @@ def introduction():
 def display_all_haikus():
 
     # displays all of the haikus that the user has generated or created
+    Chaiku_length = len(user_created_haiku)
+    Ghaiku_length = len(user_generated_haiku)
 
-    while True:
-        Chaiku_length = len(user_created_haiku)
-        Ghaiku_length = len(user_generated_haiku)
-
-        if (Chaiku_length < 3 and Ghaiku_length == 0):
-            for item in user_created_haiku:
-                print item
+    if (Chaiku_length < 3 and Ghaiku_length == 0):
+        for item in user_created_haiku:
+            print item
             print "\nYou've only written {} lines of haiku so far and you haven't generated any haikus either!!".format(Chaiku_length)
-            break
 
-        elif (Ghaiku_length < 3 and Chaiku_length == 0):
-            print "You've only generated {} lines of haiku so far, and you haven't created any haikus either! What are you doing!!!??".format(Ghaiku_length)
-            break
+    elif (Chaiku_length == 0 and Ghaiku_length == 0):
+        print "View what?!?!?! You haven't written or generated anything yet!! Go back to the main menu! "
 
-        elif (Chaiku_length == 3 and Ghaiku_length == 3):
-            print "Haikus that you wrote:"
+    elif (Ghaiku_length == 0 and Chaiku_length < 3):
+        print "You've only written {} lines of haiku so far, and you haven't generated any haikus either! What are you doing!!!??".format(Chaiku_length)
+
+
+    elif (Chaiku_length == 3 and Ghaiku_length == 3):
+        print "Haikus that you wrote:"
+        print "\n"
+        for item in user_created_haiku:
+            print item
             print "\n"
-            for item in user_created_haiku:
-                print item
-                print "\n"
-                print "Haikus that you generated:"
-                print "\n"
+            print "Haikus that you generated:"
+            print "\n"
+
             for item in user_generated_haiku:
                 print item
                 print "\n"
-            break
-
-
 
 
     user_input_go_back = raw_input("Press 0 to return to main menu")
@@ -147,7 +146,7 @@ def display_all_haikus():
         return
 
 def question_1():
-    print "\nIn your honest opinion....\n"
+    print "\nIn your honest opinion, do you think...\n"
     print "A) I have no opinions about this issue. "
     print "B) The common good of all people depends on a unifying effort to defend the civil rights of every human being."
     print "C) I believe we should all worry about our own lives and successes. We get what we deserve."
@@ -204,10 +203,6 @@ def question1_repl(input):
             loop = False
             print "Please select one of the above"
     return
-
-
-
-
 
 
 def question2_repl(input):
@@ -284,15 +279,28 @@ def view_created_haiku():
 
     if user_input_whatnow == "yes":
         print "Great! "
-    else:
-        print "Enter a prompt"
+        main_menu()
+    elif user_input_whatnow == "no":
+        print "Oh no! I'm so sorry to hear that. Would you like to rewrite the whole haiku or just a specific line?"
+        print "\n 1 -- Delete this haiku and write a new one"
+        print "\n 2 -- Remove a specific line"
+        print "\n 3 -- Just kidding I like it. Take me back to the main menu"
+
+    user_input_edit = raw_input("Enter here>>>")
+
+    if user_input_edit == "1":
+        print "delete"
+    elif user_input_edit == "2":
+        pass #insert function to .pop
+    elif user_input_edit == "3":
+        main_menu()
 
 def write_line_3():
     #asks user if they would like to continue writing their haiku
 
     user_input_cont = raw_input("Ready to keep writing?! Press 1!!>>")
     if user_input_cont == "1":
-        line3 = str(raw_input("Begin writing here -------->> "))
+        line3 = str(raw_input("Begin writing your third line here -------->> "))
 
     #passes user created line3 into CountSyllables function
 
@@ -308,7 +316,7 @@ def write_line_3():
     #if yes, add to list containing haiku lines
 
         elif line3_syl == 5:
-            print "Great! 5 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
+            print "Great! 5 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!\n"
             add_line_to_list(line3)
             break
 
@@ -336,7 +344,7 @@ def write_line_2():
 
 
         elif line2_syl == 7:
-            print "Great! 7 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
+            print "Great! 7 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!\n"
             add_line_to_list(line2)
             break
 
@@ -361,7 +369,7 @@ def create_own_haiku_instructions():
 
 # Write haiku Instructions here
 
-    line1 = str(raw_input("Begin writing here -------->> "))
+    line1 = str(raw_input("Begin writing your first line here -------->> "))
 
     #pass line1 through CountSyllables function imported from Get-Sylly module and print syllables + line.
     print "\n"
@@ -374,10 +382,10 @@ def create_own_haiku_instructions():
         if line1_syl != 5:
             print "The line you entered has {0} syllables, when you need 5 for your first line. Try again!".format(line1_syl)
             print "\n"
-            line1 = str(raw_input("Begin writing here -------->> "))
+            line1 = str(raw_input("Begin writing your first line here -------->> "))
 
         elif line1_syl == 5:
-            print "Great! 5 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!"
+            print "Great! 5 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!\n"
             add_line_to_list(line1)
             break
 
