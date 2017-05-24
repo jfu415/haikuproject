@@ -122,18 +122,19 @@ def display_all_haikus():
         print "You've only written {} lines of haiku so far, and you haven't generated any haikus either! What are you doing!!!??".format(Chaiku_length)
 
 
-    elif (Chaiku_length == 3 and Ghaiku_length == 3):
+    # elif (Chaiku_length == 3 and Ghaiku_length == 3):
+    else:
         print "Haikus that you wrote:"
         print "\n"
         for item in user_created_haiku:
             print item
-            print "\n"
-            print "Haikus that you generated:"
-            print "\n"
+        print "\n"
+        print "Haikus that you generated:"
+        print "\n"
 
-            for item in user_generated_haiku:
-                print item
-                print "\n"
+        for item in user_generated_haiku:
+            print item
+            print "\n"
 
 
     user_input_go_back = raw_input("Press 0 to return to main menu")
