@@ -84,7 +84,7 @@ def introduction():
     print "\n"
     user_input_go_back = raw_input("""\nPress 0 to return to main menu \nPress 1 to see examples of a haiku >>>""")
 
-
+"""!!!!!FIX THIS!!!! When user presses anything but 1 or 0, it returns to main menu.... fix to reprompt and not go to menu"""
     while True:
         if user_input_go_back == "0":
             main_menu()
@@ -124,7 +124,7 @@ def display_all_haikus():
 
     # elif (Chaiku_length == 3 and Ghaiku_length == 3):
     else:
-        print "Haikus that you wrote:"
+        print "\nHaikus that you wrote:"
         print "\n"
         for item in user_created_haiku:
             print item
@@ -134,10 +134,10 @@ def display_all_haikus():
 
         for item in user_generated_haiku:
             print item
-            print "\n"
 
 
-    user_input_go_back = raw_input("Press 0 to return to main menu")
+
+    user_input_go_back = raw_input("\nPress 0 to return to main menu")
 
     if user_input_go_back == "0":
         main_menu()
@@ -285,7 +285,7 @@ def view_created_haiku():
         print "Oh no! I'm so sorry to hear that. Would you like to rewrite the whole haiku or just a specific line?"
         print "\n 1 -- Delete this haiku and write a new one"
         print "\n 2 -- Remove a specific line"
-        print "\n 3 -- Just kidding I like it. Take me back to the main menu"
+        print "\n 3 -- Just kidding I do like it. Take me back to the main menu"
 
     user_input_edit = raw_input("Enter here>>>")
 
@@ -322,7 +322,7 @@ def write_line_3():
             break
 
     print "Would you like to see your haiku?"
-    wanna_see = raw_input("Press 1 to view your haiku. Press 2 to return to main menu >>>")
+    wanna_see = raw_input("\nPress 1 to view your haiku.\n Press 2 to return to main menu >>>")
     if wanna_see == "1":
         view_created_haiku()
     elif wanna_see == "2":
@@ -345,7 +345,7 @@ def write_line_2():
 
 
         elif line2_syl == 7:
-            print "Great! 7 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!\n"
+            print "\nGreat! 7 syllables. Adding this to your haiku now..... *beep*.... ..... *beepboop*..... *beep!*... one moment!\n"
             add_line_to_list(line2)
             break
 
