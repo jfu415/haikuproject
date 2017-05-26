@@ -84,23 +84,21 @@ def introduction():
     print "\n"
     user_input_go_back = raw_input("""\nPress 0 to return to main menu \nPress 1 to see examples of a haiku >>>""")
 
-"""!!!!!FIX THIS!!!! When user presses anything but 1 or 0, it returns to main menu.... fix to reprompt and not go to menu"""
-    while True:
-        if user_input_go_back == "0":
-            main_menu()
-        elif user_input_go_back == "1":
-            print "\nHaikus are easy"
-            print "But sometimes they don't make sense"
-            print "Refrigerator\n"
-            print "\n "
-            print "Advice for those"
-            print "in a difficult position:"
-            print "First, be flexible.\n"
-            print "\n"
-            break
-        else:
-            print "Please select either 0 or 1."
-            break
+    if user_input_go_back == "0":
+        main_menu()
+    elif user_input_go_back == "1":
+        print "\nHaikus are easy"
+        print "But sometimes they don't make sense"
+        print "Refrigerator\n"
+        print "\n "
+        print "Advice for those"
+        print "in a difficult position:"
+        print "First, be flexible.\n"
+        print "\n"
+
+    else:
+        print "Please select either 0 or 1."
+
 
 
     return
@@ -147,7 +145,8 @@ def display_all_haikus():
         return
 
 def question_1():
-    print "\nIn your honest opinion, do you think...\n"
+    print "\nIn your honest opinion, do you think the government should work with the people to"
+    print "ensure every person's basic needs are met in order to survive?\n"
     print "A) I have no opinions about this issue. "
     print "B) The common good of all people depends on a unifying effort to defend the civil rights of every human being."
     print "C) I believe we should all worry about our own lives and successes. We get what we deserve."
@@ -158,11 +157,11 @@ def question_1():
     return
 
 def question_2():
-    print "\nQuestion 2 here\n"
-    print "A) ______"
-    print "B) ______"
-    print "C) ______ "
-    print "D) None of these options describe how I feel \n"
+    print "\nDo you think the U.S. military should be involved in all international affairs?\n"
+    print "A) None of these options describe how I feel"
+    print "B) No, it is hypocritical to engage in international affairs when we have not resolved the harrowing issues at home."
+    print "C) I don't have an opinion on this issue. "
+    print "D) Yes, it is our duty and obligation to fight for less fortunate countries.\n"
     question_2_input = str(raw_input("Which selection best fits you? >>").upper())
     question2_repl(question_2_input)
 
@@ -170,11 +169,11 @@ def question_2():
 
 def question_3():
 
-    print "\nQuestion 3 here\n"
-    print "A) _____"
-    print "B) ______"
-    print "C) ______"
-    print "D) None of these options describe how I feel\n"
+    print "\nHow did you feel on the evening of November 8th, 2016 (election day)?\n"
+    print "A) Angry, helpless, confused, sad "
+    print "B) I have no opinions on this issue"
+    print "C) Relieved, hopeful, determined, glad"
+    print "D) Wasn't angry, excited or upset. Didn't bother me at all.\n"
     question_3_input = str(raw_input("Which selection best fits you? >>").upper())
     question3_repl(question_3_input)
 
@@ -238,7 +237,7 @@ def finished_generating():
                 print item
         break
 
-    return_to_mm = raw_input("Press 0 to return to main menu to create more haikus!! >>>")
+    return_to_mm = raw_input("\nPress 0 to return to main menu to create more haikus!! >>>")
 
     while True:
 
@@ -252,19 +251,19 @@ def question3_repl(input):
     while True:
         if input == "A":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("There goes my freedom")
             finished_generating()
         elif input == "B":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("What does this mean, then?")
             finished_generating()
         elif input == "C":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("Make it great again.")
             finished_generating()
         elif input == "D":
             # function to add a line of haiku to Line 1
-            user_generated_haiku.append("line of haiku here")
+            user_generated_haiku.append("I really don't care")
             finished_generating()
 
 
@@ -412,19 +411,3 @@ def progress(haiku):
 
 
 main_menu()
-
-
-
-######
-######
-######
-######      TO DO LIST:
-######                   **** finish writing haiku lines
-######                   **** questions for haiku generator
-######                   **** Would it be simpler to create a dictionary to store functions & user input options (ex. 0 - main menu, 4 - display all haikus)  ???
-######
-######                     ** stylistic nice-to-haves
-######                     ** combine generated haiku lines + user written lines
-######                      * if there's time, think of more questions to increase possibilities for user to generate a unique haiku.
-######
-######                      create dict to store diff classifications of haiku lines (cons,lib,idaf,idk) and use d.popitem() to plug in randomly?
